@@ -1,4 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+def androidAnnotationsVersion = '3.1';
+def daggerVersion = '1.0.0';
 
 android {
 	compileSdkVersion 22
@@ -17,9 +22,66 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
+	lintOptions {
+		abortOnError false
+	}
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+	sourceSets.main {
+		jni.srcDirs = []
+		jniLibs.srcDir 'libs'
+	}
+	packagingOptions {
+		exclude 'META-INF/DEPENDENCIES.txt'
+		exclude 'META-INF/LICENSE.txt'
+		exclude 'META-INF/NOTICE.txt'
+		exclude 'META-INF/NOTICE'
+		exclude 'META-INF/LICENSE'
+		exclude 'META-INF/DEPENDENCIES'
+		exclude 'META-INF/notice.txt'
+		exclude 'META-INF/license.txt'
+		exclude 'META-INF/dependencies.txt'
+		exclude 'META-INF/LGPL2.1'
+		exclude 'META-INF/ASL2.0'
+		exclude 'LICENSE.txt'
+		exclude 'LICENSE'
+		exclude 'NOTICE'
+	}
+}
+configurations {
+	apt
+}
+apt {
+	arguments {
+		androidManifestFile variant.outputs[0].processResources.manifestFile
+		resourcePackageName android.defaultConfig.applicationId
+	}
 }
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:22.1.1'
+	compile 'com.android.support:appcompat-v7:22.0.+'
+	compile 'com.android.support:support-v4:22.0.+'
+
+	// IOC
+	apt "org.androidannotations:androidannotations:${androidAnnotationsVersion}"
+	compile "org.androidannotations:androidannotations-api:${androidAnnotationsVersion}"
+	apt "com.squareup.dagger:dagger-compiler:${daggerVersion}"
+	compile "com.squareup.dagger:dagger:${daggerVersion}"
+
+	// UTIL
+	compile 'io.reactivex:rxjava:1.0.10'
+	compile 'io.reactivex:rxandroid:0.24.0'
+	compile 'com.google.code.gson:gson:2.3.1'
+	compile 'com.google.guava:guava:18.0'
+
+	// HTTP & IMAGE
+	compile 'com.squareup.retrofit:retrofit:1.9.0'
+	compile 'com.squareup.okhttp:okhttp-urlconnection:2.3.0'
+	compile 'com.squareup.okhttp:okhttp:2.3.0'
+
+	// UI
+	compile 'com.afollestad:material-dialogs:0.7.4.0'
 }
