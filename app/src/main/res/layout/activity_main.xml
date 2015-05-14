@@ -1,68 +1,19 @@
-<FrameLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:orientation="vertical">
 
 	<ImageView
+		android:id="@+id/iv_jeju"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:adjustViewBounds="true"
 		android:src="@drawable/jeju"/>
 
-	<GridLayout
+	<TextView
+		android:id="@+id/tv_time"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:columnCount="6"
-		android:rowCount="6"
-		>
-
-		<Button
-			android:id="@+id/btn_mosle"
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_x="50dp"
-			android:layout_y="250sp"
-			android:background="#5000"
-			/>
-		<Button
-			android:id="@+id/btn_donongtan"
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_x="50dp"
-			android:layout_y="300dp"
-			android:background="#5000"
-			/>
-		<Button
-			android:id="@+id/btn_jungmoon"
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_x="110dp"
-			android:layout_y="250dp"
-			android:background="#5000"
-			/>
-		<Button
-			android:id="@+id/btn_seogui"
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_x="170dp"
-			android:layout_y="250dp"
-			android:background="#5000"
-			/>
-		<Button
-			android:id="@+id/btn_jeju"
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_x="165dp"
-			android:layout_y="110dp"
-			android:background="#5000"
-			/>
-		<Button
-			android:id="@+id/btn_sungsan"
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_x="320dp"
-			android:layout_y="140dp"
-			android:background="#5000"
-			/>
-	</GridLayout>
-</FrameLayout>
+		android:layout_height="wrap_content"
+		android:text="-"/>
+</LinearLayout>

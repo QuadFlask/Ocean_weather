@@ -31,6 +31,7 @@ public class Data {
 											result += "\n기압: " + strings1[18];
 											result += "\n풍향: " + strings1[19];
 											result += "\n풍속: " + strings1[20];
+											result += "\n시간: " + strings1[12];
 
 											cache.put(location, result);
 										}
