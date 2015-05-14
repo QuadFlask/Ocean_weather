@@ -71,7 +71,7 @@ public class MainActivity extends ActionBarActivity implements View.OnTouchListe
 						data = result;
 						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 						String text = simpleDateFormat.format(new Date());
-						updateText(text);
+						updateText("업데이트 됨 : " + text+"\n매분마다 업데이트");
 					},
 					throwable -> {
 						throwable.printStackTrace();
