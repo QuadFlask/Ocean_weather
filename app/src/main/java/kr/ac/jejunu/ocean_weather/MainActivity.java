@@ -19,6 +19,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.Timer;
@@ -67,7 +68,8 @@ public class MainActivity extends ActionBarActivity implements View.OnTouchListe
 			api.fetch().subscribe(
 					result -> {
 						data = result;
-						tv.setText(new Date().toString());
+						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						tv.setText(simpleDateFormat.format(new Date()));
 					},
 					throwable -> {
 						throwable.printStackTrace();
