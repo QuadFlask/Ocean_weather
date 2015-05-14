@@ -17,6 +17,7 @@ import com.google.common.collect.Maps;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.text.SimpleDateFormat;
@@ -69,7 +70,8 @@ public class MainActivity extends ActionBarActivity implements View.OnTouchListe
 					result -> {
 						data = result;
 						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						tv.setText(simpleDateFormat.format(new Date()));
+						String text = simpleDateFormat.format(new Date());
+						updateText(text);
 					},
 					throwable -> {
 						throwable.printStackTrace();
@@ -79,6 +81,11 @@ public class MainActivity extends ActionBarActivity implements View.OnTouchListe
 								.cancelable(true)
 								.title("error").show();
 					});
+	}
+
+	@UiThread
+	void updateText(String text) {
+		tv.setText(text);
 	}
 
 	@Override
